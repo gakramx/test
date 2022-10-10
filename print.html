@@ -1,0 +1,439 @@
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Imprimer Attestation Scolaire</title>
+      <script>
+      var $ = jQuery = require("jquery")
+      </script>
+      <script src="../node_modules/jquery/dist/jquery.js">  </script>
+      <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+      <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
+
+      <style>
+            
+            body {
+  width: 230mm;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  font-size: 12pt;
+  background: rgb(204,204,204); 
+}
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+.main-page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 10mm auto;
+  background: white;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+}
+.sub-page {
+  padding: 1cm;
+  height: 297mm;
+  position: relative;
+ 
+}
+@page {
+  size: A4;
+  margin: 0;
+}
+
+          @media print {
+            html, body {
+    width: 210mm;
+    height: 297mm;        
+  }
+  .main-page {
+    margin: 0;
+    border: initial;
+    border-radius: initial;
+   width: initial;
+    min-height: initial;
+    box-shadow: initial;
+    background: initial;
+  }
+  /*
+      body {
+        background: none;
+        color: rgb(122, 119, 119) !important;
+        font-size: 70%;
+        margin: 0;
+        padding: 0;
+      }
+*/
+    .small_p{
+      padding: 0 !important;
+        margin: 0 !important;
+        font-size: 10px !important;
+    }
+    
+      header {
+        padding: 10px 30px 10px 30px;
+      
+      }
+    
+      
+      }
+
+    /*----------------------------------*/
+
+
+      header {
+      display: flex;
+      justify-content: space-between;  
+      padding: 10px 30px 10px 30px;
+      /*align-items: center;*/
+    }
+    
+    .small_pnf{
+      padding: 0 !important;
+        margin: 0 !important;
+        font-size: 16px !important;
+        font-weight: bold;
+    }
+    .solid
+    {
+      border-bottom: 1px solid gray;
+      margin-left: 15%;
+      width:60%;
+    }
+
+    .small_p{
+      padding: 0 !important;
+        margin: 0 !important;
+        font-size: 10px !important;
+    
+    }
+    header img
+    {
+      width: 10%;
+      height:10%;
+    }
+    footer {
+      position:absolute;
+    width:90%;
+    bottom:3%;
+    text-align:center;
+    
+}
+.outer-border {
+    
+    padding: 20px;
+    margin-top: 10%;
+    border: 10px solid gray;
+    margin-left: 1%
+}
+
+.inner-dotted-border {
+
+    padding: 20px;
+    padding-top: 5%;
+    padding-bottom: 20%;
+    border: 5px solid gray;
+    border-style: dotted;
+}
+
+
+.set_font{
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.outer-no {
+    
+    margin-top: 3cm;
+    margin-left: 3cm;
+    margin-Right: 2cm;
+    margin-bottom: 4.5cm;
+
+}
+    
+.inner-dotted-no {
+  
+  margin-left: 2.3cm;
+    margin-Right: 1cm;
+    border: black 1px solid;
+    
+}
+
+          </style>
+    </head>
+    <body >
+      <div class="main-page"> 
+        <div class="sub-page">
+     
+        <header class="hide_class" >
+        <img src="../resources/logo1.png" alt="star"/>
+        <div>
+        <p class="small_pnf" align="center">MIAGE Sidi Slimane-Etablissement Privé et Accrédité</p>
+        <p class="small_p" align="center">Autorisation n° : 4/04/2/2001 – du 17/09/2009 Accréditation n° : 17/DFPP/E0307/24</p>
+        <p class="small_p" align="center">Email : miage.sidi.slimane1@gmail.com – Site Web : www.groupemiage.net </p>
+      </div>
+    
+        
+     
+        <img src="../resources/logo2.png" alt="star"/>
+        
+        </header>
+
+        <div   class="solid hide_class"style="top: 10%;  position: absolute;"> </div>
+       
+        <div id="main_border" class="outer-border">
+        <div id="sub_border" class="inner-dotted-border"> 
+
+            <h3 class="hide_class"  id="" style="text-align: center;"><u>ATTESTATION</u> </h3><br>
+          <div></div>
+            <P  class="set_font" id="ent">&emsp;&emsp;&nbsp;&nbsp;Le Directeur de l'école <b>MIAGE</b> privée, cértifie par la présente attestation que:</P>
+           
+            <p class="set_font" id="">Le(a) stagiaire:</p>
+          <div style="padding-left: 4%;">
+            <p class="set_font">Nom et Prénom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><span id="name"></span></b></p>
+            <p class="set_font">Né(e) le&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><span id="dn"></span></b> </p>
+            <p class="set_font">CIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b> <span id="cin"></span></b></p>
+
+            <p class="set_font">Filière&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b> <span id="fili"></span></b></p>
+            <p class="set_font">Niveau&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><span id="dretd"> </span></b></p>
+            <p class="set_font">N° d'inscription&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><span id="nin"></span></b> </p>
+
+          </div>
+
+           <br>  <p class="set_font" id="">&emsp;&emsp;&nbsp;&nbsp;Est inscrit(e) </span> au sein de notre établissement le <b> <span id="dat_inc"></span> </b> 
+             pour préparer le diplome 
+             de <b> <span id="type_dep"></span>  </b>, et ce pour l'année 
+            de Formation <b> <span id="one_year"> </span>  </b>. <br>&emsp;&emsp;&nbsp;&nbsp; La Présente attestation est délivrée à l'intéressé (e) sur sa demande
+            pour servir et valoir ce que de droit.</p>
+            <p class="set_font" id=""style="margin-left:55%;">Fait à Sidi Slimane le: <b><span id="created_date"></span></b></p><br>
+
+            <p class="set_font" id="" style="margin-left:55%;">Signé:</p>
+
+
+
+
+           </div>
+          </div>
+      
+       <div class="solid hide_class" style="bottom: 5%;  position: absolute;" > </div>
+      <footer class="hide_class">
+        <p class="small_p" >22 avenue Hassan II etg 2 Apt 3&4 Sidi Slimane - Maroc    Tel : (+212) 0537500858 </p>
+      </footer>
+
+    
+      <di  style="margin-left: 35%; padding: 3%;">
+      <button class="btn btn-dark text-center" id="pdf-btn">Générer Pdf</button>
+      <button class="btn btn-dark text-center" id="print-btn">Imprimer</button>
+     
+      <input type="checkbox" id="remove-btn" name="vehicle1" value="Bike" onclick="remove_border()">
+<label  id="remove_check" for="vehicle1"> Avec Cadre</label>
+
+    </di>
+    </div>
+  </div>
+        <script>
+              const electron = require('electron');
+              const shell = electron.remote.shell;
+              const storage = require('electron-json-storage')
+              const path = require('path');
+              const os = require("os");
+              const fs = require('fs');
+              const pdfBtn = document.querySelector("#pdf-btn")
+              const printBtn = document.querySelector("#print-btn")
+              const removeBtn = document.getElementById("remove-btn");
+              const remove_check = document.getElementById("remove_check");
+              const BrowserWindow = electron.remote.BrowserWindow;
+            var nin_data;
+              var options = {
+                marginsType: 1,
+                pageSize: 'A4',
+                printBackground: false,
+                printSelectionOnly: false,
+                landscape: false,
+                scaleFactor: 100
+            }
+            var options2 = {
+                silent: false,
+                marginsType: 1,
+                pageSize: 'A4',
+                printBackground: true,
+                printSelectionOnly: false,
+                landscape: false
+            }
+            removeBtn.checked = true
+            function remove_border(){
+              var mainBorder = document.getElementById("main_border");
+              var subBorder = document.getElementById("sub_border");
+              
+              var divsToHide = document.getElementsByClassName("hide_class");
+            if (removeBtn.checked == true){
+              for(var i = 0; i < divsToHide.length; i++){
+                    divsToHide[i].style.visibility = "visible"; // or
+                }
+               
+              mainBorder.classList.remove("outer-no");
+              mainBorder.classList.add("outer-border");
+              
+              subBorder.classList.remove("inner-dotted-no");
+              subBorder.classList.add("inner-dotted-border");
+            } else {
+
+              mainBorder.classList.remove("outer-border");
+              mainBorder.classList.add("outer-no");
+           
+              subBorder.classList.remove("inner-dotted-border");
+          //    subBorder.classList.add("inner-dotted-no");
+              for(var i = 0; i < divsToHide.length; i++){
+                    divsToHide[i].style.visibility = "hidden"; // or
+                }
+              }
+            }
+            pdfBtn.addEventListener("click", (event) => {
+                    var filepath1 = path.join(os.homedir(), `Attestation-${nin_data}.pdf`);
+                    event.target.style.visibility = "hidden"
+                    document.querySelector("#print-btn").style.visibility = "hidden"
+                    removeBtn.style.visibility = "hidden"
+           
+              remove_check.style.visibility = "hidden"
+                    // event.target.style.visibility = "hidden"
+                    let win = BrowserWindow.getFocusedWindow();
+                    win.webContents.printToPDF(options).then(data => {
+                        fs.writeFile(filepath1, data, function (err) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                alert('PDF Generated Successfully');
+                                event.target.style.visibility = "visible"
+                                document.querySelector("#print-btn").style.visibility = "visible"
+                                removeBtn.style.visibility = "visible"
+                                remove_check.style.visibility = "visible"
+                                shell.openExternal(filepath1)
+                                // win.webContents.print({ silent: false, printBackground: true });
+                            }
+                        });
+                    }).catch(error => {
+                        console.log(error)
+                    });
+                })
+                printBtn.addEventListener("click", (event) => {
+                    // var filepath1 = path.join(__dirname, `../assets/${printableInvoice.Client.name + printableInvoice.id}.pdf`);
+                    event.target.style.visibility = "hidden"
+                    document.querySelector("#pdf-btn").style.visibility = "hidden"
+                    removeBtn.style.visibility = "hidden"
+                    remove_check.style.visibility = "hidden"
+                    let win = BrowserWindow.getFocusedWindow();
+                    win.webContents.print(options2).then(data => {
+                        console.log('PDF Generated Successfully');
+                        event.target.style.visibility = "visible"
+                        document.querySelector("#pdf-btn").style.visibility = "visible"
+                        removeBtn.style.visibility = "visible"
+                        remove_check.style.visibility = "visible"
+                        // win.webContents.print({ silent: false, printBackground: true });
+                    }
+                    ).catch(error => {
+                        console.log(error)
+                    });
+
+                })
+                let ipcRenderer = require('electron').ipcRenderer;
+    ipcRenderer.on('patient-data', async (event, Patients_data) => {
+      var host_var;
+      const storage = require('electron-json-storage')
+      var data_info = storage.getSync('userinfo');
+      host_var = data_info.host;
+
+      fetch("http://" + host_var + "/api/patients/" + Patients_data + "")
+        .then(res => res.json())
+        .then(data => {
+          
+
+          const nin = document.querySelector("#nin")
+          const cin = document.querySelector("#cin")
+          const name = document.querySelector("#name")
+          const dn = document.querySelector("#dn")
+          const nivetd = document.querySelector("#nivetd")
+         
+          const fili = document.querySelector("#fili")
+          const dretd = document.querySelector("#dretd")
+          const dat_inc = document.querySelector("#dat_inc")
+          const type_dep = document.querySelector("#type_dep")
+          const one_year = document.querySelector("#one_year")
+          const created_date = document.querySelector("#created_date")
+          console.log(data[0])
+         cin.textContent=data[0].CIN
+          nin.textContent=data[0].NIN
+         nin_data = data[0].NIN
+          name.textContent=data[0].FL_NAME
+      
+          dn.textContent=data[0].DN
+        
+        
+                switch(data[0].FILI) {
+                  case "TSDI":
+                      fili.textContent=" Développement Informatique "
+                      dretd.textContent= " Technicien Spécialisé - "  + data[0].DURE
+                      type_dep.textContent=" Technicien Spécialisé "
+                    break;
+                  case "TDI":
+                  fili.textContent=" Développement Informatique "
+                      dretd.textContent= " Technicien - "  + data[0].DURE
+                      type_dep.textContent=" Technicien "
+                    break;
+                  case "TSSRI":
+                  fili.textContent=" Système et Réseau Informatique "
+                      dretd.textContent= " Technicien Spécialisé - "  + data[0].DURE
+                      type_dep.textContent=" Technicien Spécialisé "
+                    break;
+                    case "TSRI":
+                    fili.textContent=" Système et Réseau Informatique "
+                      dretd.textContent= " Technicien Spécialisé - "  + data[0].DURE
+                      type_dep.textContent=" Technicien Spécialisé "
+                    break;
+                    case "TSGE":
+                    fili.textContent=" Gestion d'Entreprise"
+                      dretd.textContent= " Technicien Spécialisé - "  + data[0].DURE
+                      type_dep.textContent=" Technicien Spécialisé "
+                    break;
+                    case "OS":
+                    fili.textContent=" Opérateur de Saisie "
+                      dretd.textContent= " Qualification - Une année" 
+                      type_dep.textContent=" Qualification "
+                    break;
+                    case "TGI":
+                    fili.textContent="Gestion Informatisée "
+                      dretd.textContent= " Technicien - "  + data[0].DURE
+                      type_dep.textContent=" Technicien "
+                    break;
+                    
+                  default:
+                  fili.textContent="Autre"
+                      dretd.textContent= " Autre - "  + data[0].DURE
+                      type_dep.textContent=" Autre "
+              } 
+          var date = new Date( data[0].DS);
+          dat_inc.textContent = date.toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric'});
+
+         
+
+          function formattedDate(d = new Date) {
+  return [d.getDate(), d.getMonth()+1, d.getFullYear()]
+      .map(n => n < 10 ? `0${n}` : `${n}`).join('/');
+}
+          created_date.textContent =formattedDate()
+          var one_year_date = new Date().getFullYear()
+          var d = new Date();
+d.setFullYear(d.getFullYear() + 1);
+        var next_year=d.getFullYear()
+          one_year.textContent=one_year_date+"/"+next_year
+
+
+    
+
+        })
+    })
+
+        </script>
+    </body>
+  </html>
